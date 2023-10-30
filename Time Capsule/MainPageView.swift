@@ -16,11 +16,11 @@ struct MainPageView: View {
                     Text("Home")
                 }
             
-            CapsuleCreationView()
-                .tabItem {
-                    Image(systemName: "plus.circle")
-                    Text("Create")
-                }
+//            CapsuleCreationView()
+//                .tabItem {
+//                    Image(systemName: "plus.circle")
+//                    Text("Create")
+//                }
             
             ProfileView()
                 .tabItem {
