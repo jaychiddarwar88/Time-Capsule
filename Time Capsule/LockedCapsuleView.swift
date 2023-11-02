@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct LockedCapsulesView: View {
+    @FetchRequest(
+        entity: CapsuleEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \CapsuleEntity.unlockDate, ascending: true)],
+        predicate: NSPredicate(format: "isLocked == %@", NSNumber(value: true))
+    ) var capsules: FetchedResults<CapsuleEntity>
+        
     var body: some View {
-        List {
-            // Your locked capsules list items go here
-            Text("Locked Capsule 1")
-            Text("Locked Capsule 2")
+        NavigationView{
+            List(capsules) { capsule in
+                Text(capsule.title ?? "Unnamed Capsule")
+            }
+            .navigationTitle("Locked Capsules")
         }
-        .navigationTitle("Locked Capsules")
     }
 }
 

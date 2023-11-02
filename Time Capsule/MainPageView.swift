@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct MainPageView: View {
-//    @FetchRequest(sortDescriptors: []) var capsules: FetchedResults<CapsuleEntity>
+    @Environment(\.managedObjectContext) private var moc
+    @FetchRequest(
+        entity: CapsuleEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \CapsuleEntity.unlockDate, ascending: true)],
+        predicate: NSPredicate(format: "isLocked == %@", NSNumber(value: true))
+    ) var capsules: FetchedResults<CapsuleEntity>
+    
     var body: some View {
         TabView {
             HomeView()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
+                }.onAppear{
+                    unlockCapsulesIfNeeded()
                 }
-            
-//            CapsuleCreationView()
-//                .tabItem {
-//                    Image(systemName: "plus.circle")
-//                    Text("Create")
-//                }
             
             ProfileView()
                 .tabItem {
@@ -34,6 +36,26 @@ struct MainPageView: View {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
+        }
+    }
+    
+    func unlockCapsulesIfNeeded() {
+        let today = Date()
+        var needsSave = false
+
+        for capsule in capsules where capsule.isLocked {
+            if let unlockDate = capsule.unlockDate, unlockDate <= today {
+                capsule.isLocked = false
+                needsSave = true
+            }
+        }
+
+        if needsSave {
+            do {
+                try moc.save()
+            } catch {
+                print("Error saving managed object context: \(error)")
+            }
         }
     }
 }

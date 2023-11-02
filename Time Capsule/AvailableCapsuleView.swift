@@ -9,28 +9,32 @@ import SwiftUI
 
 struct AvailableCapsulesView: View {
     
-    @FetchRequest(sortDescriptors: []) var capsules: FetchedResults<CapsuleEntity>
+    @FetchRequest(
+        entity: CapsuleEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \CapsuleEntity.unlockDate, ascending: true)],
+        predicate: NSPredicate(format: "isLocked == %@", NSNumber(value: false))
+    ) var capsules: FetchedResults<CapsuleEntity>
         
     var body: some View {
         NavigationView{
             List(capsules) { capsule in
                 Text(capsule.title ?? "Unnamed Capsule")
-                    .onAppear {
-                        printCapsuleDetails(capsule)
-                    }
+//                    .onAppear {
+//                        printCapsuleDetails(capsule)
+//                    }
             }
             .navigationTitle("Available Capsules")
         }
     }
         
-        // This function prints the details of a capsule.
-        func printCapsuleDetails(_ capsule: CapsuleEntity) {
-            if let name = capsule.title {
-                print("Capsule Name: \(name)")
-            } else {
-                print("Capsule Name: Unnamed Capsule")
-            }
-        }
+//        // This function prints the details of a capsule.
+//        func printCapsuleDetails(_ capsule: CapsuleEntity) {
+//            if let name = capsule.title {
+//                print("Capsule Name: \(name)")
+//            } else {
+//                print("Capsule Name: Unnamed Capsule")
+//            }
+//        }
 }
 
 struct AvailableCapsulesView_Previews: PreviewProvider {
