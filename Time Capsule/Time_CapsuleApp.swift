@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Time_CapsuleApp: App {
+    
+    @StateObject private var dataController = ModelController()
+    
     var body: some Scene {
         WindowGroup {
             MainPageView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

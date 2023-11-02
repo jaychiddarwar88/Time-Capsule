@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct AvailableCapsulesView: View {
+    
+    @FetchRequest(sortDescriptors: []) var capsules: FetchedResults<CapsuleEntity>
+        
     var body: some View {
-        List {
-            // Your available capsules list items go here
-            Text("Available Capsule 1")
-            Text("Available Capsule 2")
+        NavigationView{
+            List(capsules) { capsule in
+                Text(capsule.title ?? "Unnamed Capsule")
+                    .onAppear {
+                        printCapsuleDetails(capsule)
+                    }
+            }
+            .navigationTitle("Available Capsules")
         }
-        .navigationTitle("Available Capsules")
     }
+        
+        // This function prints the details of a capsule.
+        func printCapsuleDetails(_ capsule: CapsuleEntity) {
+            if let name = capsule.title {
+                print("Capsule Name: \(name)")
+            } else {
+                print("Capsule Name: Unnamed Capsule")
+            }
+        }
 }
 
 struct AvailableCapsulesView_Previews: PreviewProvider {

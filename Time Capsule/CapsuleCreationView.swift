@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct CapsuleCreationView: View {
+    @Environment(\.managedObjectContext) var moc
     @State private var title: String = ""
+    @State private var descriptionText: String = ""
     @State private var unlockDate: Date = Date()
     @State private var isLocked: Bool = true
     @State private var textContents: [String] = []
-    @State private var imageContents: [UIImage] = [] // Store your images as UIImage
+    @State private var imageContents: [UIImage] = []
     
     var body: some View {
         NavigationView {
@@ -20,6 +22,7 @@ struct CapsuleCreationView: View {
                 Form {
                     Section(header: Text("Capsule Details")) {
                         TextField("Title", text: $title)
+                        TextField("Capsule Description", text: $descriptionText)
                         DatePicker("Unlock Date", selection: $unlockDate, displayedComponents: .date)
                         Toggle("Locked", isOn: $isLocked)
                     }
@@ -29,7 +32,7 @@ struct CapsuleCreationView: View {
                             Text(textContents[index])
                         }
                         Button("Add Text") {
-                            textContents.append("New Text") // Here, you can input or append text content
+                            textContents.append("New Text")
                         }
                     }
                     
@@ -40,13 +43,26 @@ struct CapsuleCreationView: View {
                                 .scaledToFit()
                         }
                         Button("Add Image") {
-                            // Here, you can input or append new images to the imageContents array
+                            
                         }
                     }
                 }
                 .navigationBarTitle("Create Capsule")
                 .navigationBarItems(trailing: Button("Save") {
-                    // Your save action here
+                    
+                    
+                    // Creating and setting up the Capsule entity
+                    let capsule = CapsuleEntity(context: moc)
+                    capsule.id = UUID()
+                    capsule.title = self.title
+                    capsule.descriptionText = self.descriptionText
+                    capsule.isLocked = self.isLocked
+                    capsule.unlockDate = self.unlockDate
+//                    print(capsule)
+                    
+                    try? moc.save()
+
+
                 })
             }
         }

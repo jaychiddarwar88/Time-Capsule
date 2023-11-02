@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainPageView: View {
+//    @FetchRequest(sortDescriptors: []) var capsules: FetchedResults<CapsuleEntity>
     var body: some View {
         TabView {
             HomeView()
