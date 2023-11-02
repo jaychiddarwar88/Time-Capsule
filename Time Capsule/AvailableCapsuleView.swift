@@ -31,6 +31,7 @@ struct AvailableCapsulesView: View {
 //        func printCapsuleDetails(_ capsule: CapsuleEntity) {
 //            if let name = capsule.title {
 //                print("Capsule Name: \(name)")
+//                print(capsule.content)
 //            } else {
 //                print("Capsule Name: Unnamed Capsule")
 //            }

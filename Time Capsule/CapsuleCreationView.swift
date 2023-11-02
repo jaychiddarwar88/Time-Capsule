@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct CapsuleCreationView: View {
     @Environment(\.managedObjectContext) var moc
@@ -15,6 +16,8 @@ struct CapsuleCreationView: View {
     @State private var isLocked: Bool = true
     @State private var textContents: [String] = []
     @State private var imageContents: [UIImage] = []
+    @State private var shouldNavigate = false
+    @State private var newTextContent: String = ""
     
     var body: some View {
         NavigationView {
@@ -31,8 +34,16 @@ struct CapsuleCreationView: View {
                         ForEach(textContents.indices, id: \.self) { index in
                             Text(textContents[index])
                         }
+                        // Add a text field for user to enter new text
+                        TextField("Enter text", text: $newTextContent)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+
                         Button("Add Text") {
-                            textContents.append("New Text")
+                            // Append the new text to the textContents array
+                            if !newTextContent.isEmpty {
+                                textContents.append(newTextContent)
+                                newTextContent = ""
+                            }
                         }
                     }
                     
@@ -50,22 +61,43 @@ struct CapsuleCreationView: View {
                 .navigationBarTitle("Create Capsule")
                 .navigationBarItems(trailing: Button("Save") {
                     
-                    
-                    // Creating and setting up the Capsule entity
                     let capsule = CapsuleEntity(context: moc)
+                    
                     capsule.id = UUID()
                     capsule.title = self.title
                     capsule.descriptionText = self.descriptionText
                     capsule.isLocked = self.isLocked
                     capsule.unlockDate = self.unlockDate
-//                    print(capsule)
+                    
+                    for text in textContents {
+                        let content = ContentEntity(context: moc)
+                        content.contentId = UUID()
+                        content.type = "TEXT"
+                        content.textContent = text
+                        content.imageContent = nil
+                        capsule.addToContent(content)
+                    }
+                    
+                    // For each image content, create a new Content entity
+                    for image in imageContents {
+                        let content = ContentEntity(context: moc)
+                        content.contentId = UUID()
+                        content.type = "IMAGE"
+                        content.textContent = nil
+                        if let imageData = image.jpegData(compressionQuality: 1.0) {
+                            content.imageContent = imageData
+                        }
+                        capsule.addToContent(content)
+                    }
                     
                     try? moc.save()
-
-
+                    shouldNavigate = true
+                    
+                    //Logic to navigate back to home view.
                 })
             }
         }
+
     }
 }
 

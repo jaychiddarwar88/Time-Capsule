@@ -6,13 +6,13 @@
         <attribute name="isLocked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="unlockDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ContentEntity" inverseName="capsule" inverseEntity="ContentEntity"/>
+        <relationship name="content" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ContentEntity" inverseName="capsule" inverseEntity="ContentEntity"/>
     </entity>
     <entity name="ContentEntity" representedClassName="ContentEntity" syncable="YES" codeGenerationType="class">
         <attribute name="contentId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imageContent" optional="YES" attributeType="Binary"/>
         <attribute name="textContent" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
-        <relationship name="capsule" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CapsuleEntity" inverseName="content" inverseEntity="CapsuleEntity"/>
+        <relationship name="capsule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CapsuleEntity" inverseName="content" inverseEntity="CapsuleEntity"/>
     </entity>
 </model>
