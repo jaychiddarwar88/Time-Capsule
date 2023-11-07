@@ -19,23 +19,23 @@ struct AvailableCapsulesView: View {
         NavigationView{
             List(capsules) { capsule in
                 Text(capsule.title ?? "Unnamed Capsule")
-//                    .onAppear {
-//                        printCapsuleDetails(capsule)
-//                    }
+                    .onAppear {
+                        printCapsuleDetails(capsule)
+                    }
             }
             .navigationTitle("Available Capsules")
         }
     }
         
-//        // This function prints the details of a capsule.
-//        func printCapsuleDetails(_ capsule: CapsuleEntity) {
-//            if let name = capsule.title {
-//                print("Capsule Name: \(name)")
-//                print(capsule.content)
-//            } else {
-//                print("Capsule Name: Unnamed Capsule")
-//            }
-//        }
+        // This function prints the details of a capsule.
+        func printCapsuleDetails(_ capsule: CapsuleEntity) {
+            if let name = capsule.title {
+                print("Capsule Name: \(name)")
+                print(capsule.content)
+            } else {
+                print("Capsule Name: Unnamed Capsule")
+            }
+        }
 }
 
 struct AvailableCapsulesView_Previews: PreviewProvider {

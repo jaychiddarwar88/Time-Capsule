@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		691EC58C2AF6F54400CC8E0D /* Image+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691EC58B2AF6F54400CC8E0D /* Image+Extention.swift */; };
+		691EC58E2AF6F66800CC8E0D /* ImageGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691EC58D2AF6F66800CC8E0D /* ImageGridView.swift */; };
 		6936E86C2AF394840042A4E8 /* Time_Capsule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6936E86A2AF394840042A4E8 /* Time_Capsule.xcdatamodeld */; };
 		6937DA342AED1E340079E179 /* Time_CapsuleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937DA332AED1E340079E179 /* Time_CapsuleApp.swift */; };
 		6937DA362AED1E340079E179 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937DA352AED1E340079E179 /* ContentView.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		691EC58B2AF6F54400CC8E0D /* Image+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extention.swift"; sourceTree = "<group>"; };
+		691EC58D2AF6F66800CC8E0D /* ImageGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGridView.swift; sourceTree = "<group>"; };
 		6936E86B2AF394840042A4E8 /* Time_Capsule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Time_Capsule.xcdatamodel; sourceTree = "<group>"; };
 		6937DA302AED1E340079E179 /* Time Capsule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Capsule.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6937DA332AED1E340079E179 /* Time_CapsuleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_CapsuleApp.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				69CC7B512AEFD99100AB3907 /* LockedCapsuleView.swift */,
 				69C987A92AF355430016FBAE /* ModelController.swift */,
 				6936E86A2AF394840042A4E8 /* Time_Capsule.xcdatamodeld */,
+				691EC58B2AF6F54400CC8E0D /* Image+Extention.swift */,
+				691EC58D2AF6F66800CC8E0D /* ImageGridView.swift */,
 			);
 			path = "Time Capsule";
 			sourceTree = "<group>";
@@ -295,8 +301,10 @@
 				695E598A2AEFD0420030C256 /* SettingsView.swift in Sources */,
 				695E59862AEFD0110030C256 /* CapsuleCreationView.swift in Sources */,
 				6937DA362AED1E340079E179 /* ContentView.swift in Sources */,
+				691EC58C2AF6F54400CC8E0D /* Image+Extention.swift in Sources */,
 				6936E86C2AF394840042A4E8 /* Time_Capsule.xcdatamodeld in Sources */,
 				695E59842AEFCFF50030C256 /* HomeView.swift in Sources */,
+				691EC58E2AF6F66800CC8E0D /* ImageGridView.swift in Sources */,
 				69C987AA2AF355430016FBAE /* ModelController.swift in Sources */,
 				6937DA342AED1E340079E179 /* Time_CapsuleApp.swift in Sources */,
 				695E59882AEFD02F0030C256 /* ProfileView.swift in Sources */,

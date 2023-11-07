@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import UIKit
+import PhotosUI
 
 struct CapsuleCreationView: View {
     @Environment(\.managedObjectContext) var moc
@@ -15,7 +15,7 @@ struct CapsuleCreationView: View {
     @State private var unlockDate: Date = Date()
     @State private var isLocked: Bool = true
     @State private var textContents: [String] = []
-    @State private var imageContents: [UIImage] = []
+    @State private var imageContents: [PhotosPickerItem] = []
     @State private var shouldNavigate = false
     @State private var newTextContent: String = ""
     
@@ -48,13 +48,8 @@ struct CapsuleCreationView: View {
                     }
                     
                     Section(header: Text("Add Image Content")) {
-                        ForEach(imageContents.indices, id: \.self) { index in
-                            Image(uiImage: imageContents[index])
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button("Add Image") {
-                            
+                        PhotosPicker(selection: $imageContents, matching: .images) {
+                            Text("Select Multiple Photos")
                         }
                     }
                 }
@@ -78,17 +73,20 @@ struct CapsuleCreationView: View {
                         capsule.addToContent(content)
                     }
                     
-                    // For each image content, create a new Content entity
-                    for image in imageContents {
-                        let content = ContentEntity(context: moc)
-                        content.contentId = UUID()
-                        content.type = "IMAGE"
-                        content.textContent = nil
-                        if let imageData = image.jpegData(compressionQuality: 1.0) {
-                            content.imageContent = imageData
+                    for imageContent in imageContents {
+                        Task {
+                            // Retrieve the NSItemProvider from the PhotosPickerItem
+                            if let data = try? await imageContent.loadTransferable(type: Data.self) {
+                                let content = ContentEntity(context: self.moc)
+                                content.contentId = UUID()
+                                content.type = "IMAGE"
+                                content.textContent = nil
+                                content.imageContent = data
+                                capsule.addToContent(content)
+                            }
                         }
-                        capsule.addToContent(content)
                     }
+                    
                     
                     try? moc.save()
                     shouldNavigate = true
