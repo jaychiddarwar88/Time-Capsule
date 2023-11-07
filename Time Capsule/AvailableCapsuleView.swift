@@ -16,25 +16,24 @@ struct AvailableCapsulesView: View {
     ) var capsules: FetchedResults<CapsuleEntity>
         
     var body: some View {
-        NavigationView{
-            List(capsules) { capsule in
-                Text(capsule.title ?? "Unnamed Capsule")
-                    .onAppear {
-                        printCapsuleDetails(capsule)
-                    }
+        NavigationView {
+            List(capsules, id: \.self) { capsule in
+                NavigationLink(destination: ImageGridView(capsuleID: capsule.objectID)) {
+                    Text(capsule.title ?? "Unnamed Capsule")
+                }
             }
             .navigationTitle("Available Capsules")
         }
     }
         
         // This function prints the details of a capsule.
-        func printCapsuleDetails(_ capsule: CapsuleEntity) {
-            if let name = capsule.title {
-                print("Capsule Name: \(name)")
-            } else {
-                print("Capsule Name: Unnamed Capsule")
-            }
+    func printCapsuleDetails(_ capsule: CapsuleEntity) {
+        if let name = capsule.title {
+            print("Capsule Name: \(name)")
+        } else {
+            print("Capsule Name: Unnamed Capsule")
         }
+    }
 }
 
 struct AvailableCapsulesView_Previews: PreviewProvider {
