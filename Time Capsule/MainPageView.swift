@@ -36,6 +36,7 @@ struct MainPageView: View {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
+            
         }
     }
     

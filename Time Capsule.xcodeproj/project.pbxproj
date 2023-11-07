@@ -17,6 +17,7 @@
 		6937DA452AED1E360079E179 /* Time_CapsuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937DA442AED1E360079E179 /* Time_CapsuleTests.swift */; };
 		6937DA4F2AED1E360079E179 /* Time_CapsuleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937DA4E2AED1E360079E179 /* Time_CapsuleUITests.swift */; };
 		6937DA512AED1E360079E179 /* Time_CapsuleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937DA502AED1E360079E179 /* Time_CapsuleUITestsLaunchTests.swift */; };
+		69465A6F2AFADD7C00EFDA79 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69465A6E2AFADD7C00EFDA79 /* FileManager+Extension.swift */; };
 		695E59822AEFCFCE0030C256 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E59812AEFCFCE0030C256 /* MainPageView.swift */; };
 		695E59842AEFCFF50030C256 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E59832AEFCFF50030C256 /* HomeView.swift */; };
 		695E59862AEFD0110030C256 /* CapsuleCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E59852AEFD0110030C256 /* CapsuleCreationView.swift */; };
@@ -58,6 +59,7 @@
 		6937DA4A2AED1E360079E179 /* Time CapsuleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Time CapsuleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6937DA4E2AED1E360079E179 /* Time_CapsuleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_CapsuleUITests.swift; sourceTree = "<group>"; };
 		6937DA502AED1E360079E179 /* Time_CapsuleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_CapsuleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		69465A6E2AFADD7C00EFDA79 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		695E59812AEFCFCE0030C256 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		695E59832AEFCFF50030C256 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		695E59852AEFD0110030C256 /* CapsuleCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleCreationView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				6936E86A2AF394840042A4E8 /* Time_Capsule.xcdatamodeld */,
 				691EC58B2AF6F54400CC8E0D /* Image+Extention.swift */,
 				691EC58D2AF6F66800CC8E0D /* ImageGridView.swift */,
+				69465A6E2AFADD7C00EFDA79 /* FileManager+Extension.swift */,
 			);
 			path = "Time Capsule";
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				6937DA362AED1E340079E179 /* ContentView.swift in Sources */,
 				691EC58C2AF6F54400CC8E0D /* Image+Extention.swift in Sources */,
 				6936E86C2AF394840042A4E8 /* Time_Capsule.xcdatamodeld in Sources */,
+				69465A6F2AFADD7C00EFDA79 /* FileManager+Extension.swift in Sources */,
 				695E59842AEFCFF50030C256 /* HomeView.swift in Sources */,
 				691EC58E2AF6F66800CC8E0D /* ImageGridView.swift in Sources */,
 				69C987AA2AF355430016FBAE /* ModelController.swift in Sources */,

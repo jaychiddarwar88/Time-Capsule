@@ -42,6 +42,17 @@ struct HomeView: View {
                     .cornerRadius(8)
                 }
                 
+                NavigationLink(destination: ImageGridView()) {
+                    HStack {
+                        Image(systemName: "lock")
+                        Text("Image Grid")
+                            .font(.title3)
+                    }
+                    .padding()
+                    .background(Color.red.opacity(0.1))
+                    .cornerRadius(8)
+                }
+                
                 Spacer()
             }
             .padding()
