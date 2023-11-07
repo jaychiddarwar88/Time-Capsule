@@ -11,7 +11,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // Your settings content goes here
+                //Task: Your settings content goes here
                 Text("Settings View Content")
             }
             .navigationTitle("Settings")

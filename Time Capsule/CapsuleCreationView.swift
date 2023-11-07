@@ -34,12 +34,10 @@ struct CapsuleCreationView: View {
                         ForEach(textContents.indices, id: \.self) { index in
                             Text(textContents[index])
                         }
-                        // Add a text field for user to enter new text
                         TextField("Enter text", text: $newTextContent)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
 
                         Button("Add Text") {
-                            // Append the new text to the textContents array
                             if !newTextContent.isEmpty {
                                 textContents.append(newTextContent)
                                 newTextContent = ""
@@ -75,7 +73,6 @@ struct CapsuleCreationView: View {
                     
                     for imageContent in imageContents {
                         Task {
-                            // Retrieve the NSItemProvider from the PhotosPickerItem
                             if let data = try? await imageContent.loadTransferable(type: Data.self) {
                                 let content = ContentEntity(context: self.moc)
                                 content.contentId = UUID()
@@ -86,12 +83,14 @@ struct CapsuleCreationView: View {
                             }
                         }
                     }
-                    
+                    // Task: Logic to save image to external storage.
+                    // Task: Logic to add video and audio files.
+                    // Task: Preview for selected files.
                     
                     try? moc.save()
                     shouldNavigate = true
                     
-                    //Logic to navigate back to home view.
+                    // Task: Logic to navigate back to home view.
                 })
             }
         }

@@ -10,6 +10,8 @@ import PhotosUI
 import CoreData
 
 struct ImageGridView: View {
+    // Task: to show all kind of content like text or image
+    
     var fetchRequest: FetchRequest<ContentEntity>
         var contents: FetchedResults<ContentEntity> { fetchRequest.wrappedValue }
         let columns = [GridItem(.adaptive(minimum: 100))]

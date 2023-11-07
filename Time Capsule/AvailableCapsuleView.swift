@@ -25,8 +25,7 @@ struct AvailableCapsulesView: View {
             .navigationTitle("Available Capsules")
         }
     }
-        
-        // This function prints the details of a capsule.
+    
     func printCapsuleDetails(_ capsule: CapsuleEntity) {
         if let name = capsule.title {
             print("Capsule Name: \(name)")
