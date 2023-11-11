@@ -12,12 +12,22 @@ import CoreData
 struct ImageGridView: View {
     // Task: to show all kind of content like text or image
     
-    var fetchRequest: FetchRequest<ContentEntity>
-        var contents: FetchedResults<ContentEntity> { fetchRequest.wrappedValue }
+    var textFetchRequest: FetchRequest<ContentEntity>
+        var imageFetchRequest: FetchRequest<ContentEntity>
+
+        var textContents: FetchedResults<ContentEntity> { textFetchRequest.wrappedValue }
+        var imageContents: FetchedResults<ContentEntity> { imageFetchRequest.wrappedValue }
+
         let columns = [GridItem(.adaptive(minimum: 100))]
 
         init(capsuleID: NSManagedObjectID) {
-            fetchRequest = FetchRequest<ContentEntity>(
+            // Fetch Requests
+            textFetchRequest = FetchRequest<ContentEntity>(
+                entity: ContentEntity.entity(),
+                sortDescriptors: [],
+                predicate: NSPredicate(format: "type == %@ AND capsule == %@", "TEXT", capsuleID)
+            )
+            imageFetchRequest = FetchRequest<ContentEntity>(
                 entity: ContentEntity.entity(),
                 sortDescriptors: [],
                 predicate: NSPredicate(format: "type == %@ AND capsule == %@", "IMAGE", capsuleID)
@@ -27,12 +37,27 @@ struct ImageGridView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(contents, id: \.self) { content in
-                        if let imageData = content.imageContent, let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
+                VStack {
+                    // Text Section
+                    Section(header: Text("Text Content").font(.headline)) {
+                        ForEach(textContents, id: \.self) { content in
+                            Text(content.textContent ?? "")
+                                .padding()
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(8)
+                        }
+                    }
+
+                    // Image Section
+                    Section(header: Text("Image Content").font(.headline)) {
+                        LazyVGrid(columns: columns, spacing: 20) {
+                            ForEach(imageContents, id: \.self) { content in
+                                if let imageData = content.imageContent, let uiImage = UIImage(data: imageData) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                }
+                            }
                         }
                     }
                 }

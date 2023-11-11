@@ -12,7 +12,7 @@ struct ProfileView: View {
         NavigationView {
             VStack {
                 //Task: Your profile view
-                Text("Profile View Content")
+                Text("Profile View Content (Upcoming)")
             }
             .navigationTitle("Profile")
         }

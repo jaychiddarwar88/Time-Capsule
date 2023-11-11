@@ -12,7 +12,7 @@ struct SettingsView: View {
         NavigationView {
             VStack {
                 //Task: Your settings content goes here
-                Text("Settings View Content")
+                Text("Settings View Content (Upcoming)")
             }
             .navigationTitle("Settings")
         }
